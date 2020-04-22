@@ -25,13 +25,14 @@ public class DetailActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_detail);
 
+        PhareContent.PhareItem phare = PhareContent.ITEMS.get(Integer.valueOf(id)-1);
 
-        TextView title_view = (TextView) findViewById(R.id.titleDetail);
+        //TextView title_view = (TextView) findViewById(R.id.titleDetail);
 
-        String name =  PhareContent.ITEMS.get(Integer.valueOf(id)-1).name;
-        String region = PhareContent.ITEMS.get(Integer.valueOf(id)-1).region;
-        String date = PhareContent.ITEMS.get(Integer.valueOf(id)-1).date;
+        ((TextView)findViewById(R.id.titleDetail)).setText(phare.name);
+        ((TextView)findViewById(R.id.regionDetail)).setText(phare.region);
+        ((TextView)findViewById(R.id.dateDetail)).setText(phare.date);
 
-        title_view.setText("Phare : "+name + "\n Région : " + region + "\n date : " + date);
+
     }
 }

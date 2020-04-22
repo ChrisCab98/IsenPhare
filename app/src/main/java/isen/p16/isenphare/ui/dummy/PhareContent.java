@@ -44,10 +44,11 @@ public class PhareContent {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
-
+/*
     private static PhareItem createDummyItem(int position) {
         return new PhareItem(String.valueOf(position), "Item " + position, makeDetails(position),String.valueOf(position));
     }
+   */
 
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
