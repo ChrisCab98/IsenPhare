@@ -29,7 +29,9 @@ public class DetailActivity extends AppCompatActivity {
         TextView title_view = (TextView) findViewById(R.id.titleDetail);
 
         String name =  PhareContent.ITEMS.get(Integer.valueOf(id)-1).name;
+        String region = PhareContent.ITEMS.get(Integer.valueOf(id)-1).region;
+        String date = PhareContent.ITEMS.get(Integer.valueOf(id)-1).date;
 
-        title_view.setText("Phare : "+name);
+        title_view.setText("Phare : "+name + "\n Région : " + region + "\n date : " + date);
     }
 }

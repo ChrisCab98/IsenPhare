@@ -34,9 +34,9 @@ public class PhareContent {
 
     /*Creation de tous les phares*/
     public static void createContent () {
-        addItem(new PhareItem("1","Le Planier","Sud"));
-        addItem(new PhareItem("2","La Jumment","Bretagne"));
-        addItem(new PhareItem("3","Ar Men","Bretagne"));
+        addItem(new PhareItem("1","Le Planier","Sud","1789"));
+        addItem(new PhareItem("2","La Jumment","Bretagne","1890"));
+        addItem(new PhareItem("3","Ar Men","Bretagne","1998"));
     }
     
     
@@ -46,7 +46,7 @@ public class PhareContent {
     }
 
     private static PhareItem createDummyItem(int position) {
-        return new PhareItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new PhareItem(String.valueOf(position), "Item " + position, makeDetails(position),String.valueOf(position));
     }
 
     private static String makeDetails(int position) {
@@ -65,11 +65,13 @@ public class PhareContent {
         public final String id;
         public final String name;
         public final String region;
+        public final String date;
 
-        public PhareItem(String id, String name, String region) {
+        public PhareItem(String id, String name, String region, String date) {
             this.id = id;
             this.name = name;
             this.region = region;
+            this.date = date;
         }
 
         @Override
