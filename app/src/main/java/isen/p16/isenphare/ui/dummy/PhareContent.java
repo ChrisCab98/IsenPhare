@@ -1,9 +1,23 @@
 package isen.p16.isenphare.ui.dummy;
 
+import org.json.JSONObject;
+
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
+
+import static android.content.ContentValues.TAG;
+
+import isen.p16.isenphare.MainActivity;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -23,32 +37,121 @@ public class PhareContent {
      */
     public static final Map<String, PhareItem> ITEM_MAP = new HashMap<String, PhareItem>();
 
-    private static final int COUNT = 25;
-/*
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
-        }
-    }*/
+    private static final int COUNT = 15;
+    private static final String TAG = "PhareContent";
 
-    /*Creation de tous les phares*/
-    public static void createContent () {
-        addItem(new PhareItem("1","Le Planier","Sud","1789"));
-        addItem(new PhareItem("2","La Jumment","Bretagne","1890"));
-        addItem(new PhareItem("3","Ar Men","Bretagne","1998"));
+    public static void createContent() {
+
+
+        try {
+
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(MainActivity.getContext().getAssets().open("phares_all.json")));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+
+            String str = new String(sb.toString());
+            JSONObject jObjConnection = new JSONObject(str);
+            JSONObject jsonBix = jObjConnection.getJSONObject("phares");
+            JSONArray jsonA = jsonBix.getJSONArray("liste");
+
+            for (int i = 0; i < jsonA.length(); i++) {
+                JSONObject obj = (JSONObject) jsonA.get(i);
+                String id = obj.getString("id");
+                String nom = obj.getString("name");
+                String region = obj.getString("region");
+                String construction = obj.getString("construction");
+                String filename = obj.getString("filename");
+                String auteur;
+                try {
+                    auteur = obj.getString("auteur");
+                } catch (JSONException e) {
+                    Log.d(TAG, "auteur issue");
+                    auteur = "Unknown";
+                }
+                int hauteur;
+                try {
+                    hauteur = obj.getInt("hauteur");
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "auteur issue");
+                    hauteur = 30;
+                }
+                int eclat;
+                try {
+                    eclat = obj.getInt("eclat");
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "auteur issue");
+                    eclat = 30;
+                }
+                int periode;
+                try {
+                    periode = obj.getInt("periode");
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "auteur issue");
+                    periode = 30;
+
+                }
+                int porte;
+                try {
+                    porte = obj.getInt("porte");
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "porte issue");
+                    porte = 30;
+
+                }
+                int automatisation;
+                try {
+                    automatisation = obj.getInt("automatisation");
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "automatisation issue");
+                    automatisation = 30;
+
+                }
+                double lat;
+                try {
+                    lat = obj.getInt("lat");
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "lat issue");
+                    lat = 30;
+
+                }
+                double lon;
+                try {
+                    lon = obj.getInt("lon");
+
+                } catch (JSONException e) {
+                    Log.d(TAG, "lon issue");
+                    lon = 30;
+
+                }
+
+                addItem(new PhareItem(id, nom, region, construction, Integer.parseInt(construction), filename, auteur,
+                        hauteur, eclat, periode, porte, automatisation, lat, lon));
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d(TAG, "first try");
+
+        }
     }
-    
-    
+
     private static void addItem(PhareItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
-/*
-    private static PhareItem createDummyItem(int position) {
-        return new PhareItem(String.valueOf(position), "Item " + position, makeDetails(position),String.valueOf(position));
-    }
-   */
 
     private static String makeDetails(int position) {
         StringBuilder builder = new StringBuilder();
@@ -67,12 +170,34 @@ public class PhareContent {
         public final String name;
         public final String region;
         public final String date;
+        public final int construction;
+        public final String filename;
+        public final String auteur;
+        public final int hauteur;
+        public final int eclat;
+        public final int periode;
+        public final int portee;
+        public final int automatisation;
+        public final double lat;
+        public final double lon;
 
-        public PhareItem(String id, String name, String region, String date) {
+        public PhareItem(String id, String content, String details, String date, int construction, String filename,
+                         String auteur, int hauteur, int eclat, int periode, int portee, int automatisation, double lat,
+                         double lon) {
             this.id = id;
-            this.name = name;
-            this.region = region;
+            this.name = content;
+            this.region = details;
             this.date = date;
+            this.construction = construction;
+            this.filename = filename;
+            this.auteur = auteur;
+            this.hauteur = hauteur;
+            this.eclat = eclat;
+            this.periode = periode;
+            this.portee = portee;
+            this.automatisation = automatisation;
+            this.lat = lat;
+            this.lon = lon;
         }
 
         @Override

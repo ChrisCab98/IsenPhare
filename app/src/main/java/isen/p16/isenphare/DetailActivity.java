@@ -33,6 +33,5 @@ public class DetailActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.regionDetail)).setText(phare.region);
         ((TextView)findViewById(R.id.dateDetail)).setText(phare.date);
 
-
     }
 }
