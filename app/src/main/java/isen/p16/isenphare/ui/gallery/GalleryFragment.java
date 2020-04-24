@@ -23,9 +23,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import isen.p16.isenphare.R;
+import isen.p16.isenphare.ui.dummy.PhareContent;
 
 public class GalleryFragment extends Fragment implements OnMapReadyCallback  {
     private GalleryViewModel galleryViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
@@ -45,6 +47,12 @@ public class GalleryFragment extends Fragment implements OnMapReadyCallback  {
     public void onMapReady(GoogleMap googleMap) {
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(GARDANNE), 2000, null);
         googleMap.addMarker(new MarkerOptions().position(GARDANNE));
+
+        for (PhareContent.PhareItem a : PhareContent.ITEMS)
+        {
+            googleMap.addMarker(a.Mop);
+        }
+
         if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)

@@ -4,6 +4,9 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -117,7 +120,7 @@ public class PhareContent {
                 }
                 double lat;
                 try {
-                    lat = obj.getInt("lat");
+                    lat = obj.getDouble("lat");
 
                 } catch (JSONException e) {
                     Log.d(TAG, "lat issue");
@@ -126,7 +129,7 @@ public class PhareContent {
                 }
                 double lon;
                 try {
-                    lon = obj.getInt("lon");
+                    lon = obj.getDouble("lon");
 
                 } catch (JSONException e) {
                     Log.d(TAG, "lon issue");
@@ -180,6 +183,8 @@ public class PhareContent {
         public final int automatisation;
         public final double lat;
         public final double lon;
+        public final LatLng position;
+        public final MarkerOptions Mop;
 
         public PhareItem(String id, String content, String details, String date, int construction, String filename,
                          String auteur, int hauteur, int eclat, int periode, int portee, int automatisation, double lat,
@@ -198,6 +203,9 @@ public class PhareContent {
             this.automatisation = automatisation;
             this.lat = lat;
             this.lon = lon;
+            this.position = new LatLng(lat,lon);
+            this.Mop = new MarkerOptions().position(position).title(name).snippet("date de construction");
+
         }
 
         @Override
