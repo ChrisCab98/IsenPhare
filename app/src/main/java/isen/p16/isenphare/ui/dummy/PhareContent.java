@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -21,6 +22,7 @@ import java.io.IOException;
 import static android.content.ContentValues.TAG;
 
 import isen.p16.isenphare.MainActivity;
+import isen.p16.isenphare.R;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -102,7 +104,7 @@ public class PhareContent {
                 }
                 int porte;
                 try {
-                    porte = obj.getInt("porte");
+                    porte = obj.getInt("portee");
 
                 } catch (JSONException e) {
                     Log.d(TAG, "porte issue");
@@ -184,7 +186,7 @@ public class PhareContent {
         public final double lat;
         public final double lon;
         public final LatLng position;
-        public final MarkerOptions Mop;
+        //public final MarkerOptions Mop;
 
         public PhareItem(String id, String content, String details, String date, int construction, String filename,
                          String auteur, int hauteur, int eclat, int periode, int portee, int automatisation, double lat,
@@ -204,7 +206,7 @@ public class PhareContent {
             this.lat = lat;
             this.lon = lon;
             this.position = new LatLng(lat,lon);
-            this.Mop = new MarkerOptions().position(position).title(name).snippet("date de construction");
+            //this.Mop = new MarkerOptions().position(position).title(name).snippet("date de construction").icon(BitmapDescriptorFactory.fromResource(R.drawable.lighthouse));
 
         }
 

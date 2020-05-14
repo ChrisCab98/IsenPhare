@@ -1,0 +1,36 @@
+{
+    "AppleStore": {
+        "liste": [
+            {
+                "id": "1",
+                "city": "Marseille",
+                "adress":"Les Terrasses du Port",               
+                "detail":"9 Quai du Lazaret",
+                "postalCode":"13002",
+                "phone":"(04) 20105400",
+                "lat": 43.3067466,
+                "lon": 5.3613779
+            },
+
+            {
+                "id": "2",
+                "city": "Vélizy-Villacoublay",
+                "adress":"2 Avenue de l’Europe",               
+                "detail":"",
+                "postalCode":"78140",
+                "phone":"(01) 30 70 77 00",
+                "lat": 48.780381,
+                "lon": 2.220057
+            },
+
+            {
+                "id": "2",
+                "name": "L’Espiguette",
+                "filename": "phare_espiguette",
+                "region": "Languedoc-Roussillon",
+                "lat": 43.485998056,
+                "lon": 4.138499446
+            }
+        ]
+    }
+}

@@ -1,6 +1,7 @@
 package isen.p16.isenphare.ui.gallery;
 
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +14,26 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import isen.p16.isenphare.R;
 import isen.p16.isenphare.ui.dummy.PhareContent;
 
+
+
 public class GalleryFragment extends Fragment implements OnMapReadyCallback  {
     private GalleryViewModel galleryViewModel;
+    private static final String TAG = "PhareContent";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,10 +54,13 @@ public class GalleryFragment extends Fragment implements OnMapReadyCallback  {
     public void onMapReady(GoogleMap googleMap) {
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(GARDANNE), 2000, null);
         googleMap.addMarker(new MarkerOptions().position(GARDANNE));
+        CircleOptions circleOption;
 
         for (PhareContent.PhareItem a : PhareContent.ITEMS)
         {
-            googleMap.addMarker(a.Mop);
+            googleMap.addMarker(new MarkerOptions().position(a.position) .title(a.name) .snippet("Région:" + a.region) .alpha(0.7f) .icon(BitmapDescriptorFactory.fromResource(R.drawable.buildings2)));
+            circleOption = new CircleOptions().center(a.position).fillColor(Color.parseColor("#440000DD")).radius(a.portee*1858).strokeWidth(0);
+            googleMap.addCircle(circleOption);
         }
 
         if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(),
