@@ -5,7 +5,7 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">christopher.cabantous@isen.yncrea.fr</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Parametre</string>
 
     <string name="menu_home">Acceuil</string>
     <string name="menu_gallery">Carte</string>
@@ -13,11 +13,12 @@
     <string name="menu_apropos">A-propos</string>
 
     <string name="home_second">Home Second</string>
-    <string name="homeTitle">L\'application phare de tous les phares</string>
+    <string name="homeTitle">L\'application phare, de tous les phares</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Apropos">Christopher CABANTOUS</string>
     <string name="titleDetail">Phare</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Carte</string>
+    <string name="information_sur_le_phare">Informations sur le phare :</string>
 </resources>

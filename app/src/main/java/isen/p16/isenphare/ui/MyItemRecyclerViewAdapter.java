@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import isen.p16.isenphare.MainActivity;
 import isen.p16.isenphare.R;
 import isen.p16.isenphare.ui.ItemFragment.OnListFragmentInteractionListener;
 import isen.p16.isenphare.ui.dummy.PhareContent.PhareItem;
@@ -37,10 +39,14 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
+
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
+        //holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).name);
         holder.mDateView.setText(mValues.get(position).date);
+
+        holder.mImageView.setImageResource(MainActivity.getContext().getResources().getIdentifier(mValues.get(position).filename,"drawable",MainActivity.getContext().getPackageName()));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,17 +67,19 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
+        //public final TextView mIdView;
         public final TextView mContentView;
         public final TextView mDateView;
+        public final ImageView mImageView;
         public PhareItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
+            //mIdView = (TextView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
             mDateView = (TextView) view.findViewById(R.id.listDate);
+            mImageView = (ImageView) view.findViewById(R.id.imageView);
         }
 
         @Override

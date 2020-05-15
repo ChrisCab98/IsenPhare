@@ -53,14 +53,40 @@ public class GalleryFragment extends Fragment implements OnMapReadyCallback  {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(GARDANNE), 2000, null);
-        googleMap.addMarker(new MarkerOptions().position(GARDANNE));
+        //googleMap.addMarker(new MarkerOptions().position(GARDANNE));
         CircleOptions circleOption;
+
+
 
         for (PhareContent.PhareItem a : PhareContent.ITEMS)
         {
-            googleMap.addMarker(new MarkerOptions().position(a.position) .title(a.name) .snippet("Région:" + a.region) .alpha(0.7f) .icon(BitmapDescriptorFactory.fromResource(R.drawable.buildings2)));
-            circleOption = new CircleOptions().center(a.position).fillColor(Color.parseColor("#440000DD")).radius(a.portee*1858).strokeWidth(0);
-            googleMap.addCircle(circleOption);
+            String couleur = a.couleur;
+
+            if (couleur.equals("blanc"))
+            {
+                googleMap.addMarker(new MarkerOptions().position(a.position).title(a.name) .snippet("Région : " + a.region).alpha(0.8f).icon(BitmapDescriptorFactory.fromResource(R.drawable.buildings2)));
+                circleOption = new CircleOptions().center(a.position).fillColor(Color.parseColor("#59FAFAFA")).radius(a.portee*1858).strokeWidth(1);
+                googleMap.addCircle(circleOption);
+            }
+
+            else if (couleur.equals("rouge"))
+            {
+                googleMap.addMarker(new MarkerOptions().position(a.position) .title(a.name) .snippet("Région : " + a.region).alpha(0.8f).icon(BitmapDescriptorFactory.fromResource(R.drawable.buildings2)));
+                circleOption = new CircleOptions().center(a.position).fillColor(Color.parseColor("#59F44336")).radius(a.portee*1858).strokeWidth(1);
+                googleMap.addCircle(circleOption);
+            }
+
+            else if (couleur.equals("vert"))
+            {
+                googleMap.addMarker(new MarkerOptions().position(a.position) .title(a.name) .snippet("Région : " + a.region).alpha(0.8f).icon(BitmapDescriptorFactory.fromResource(R.drawable.buildings2)));
+                circleOption = new CircleOptions().center(a.position).fillColor(Color.parseColor("#594CAF50")).radius(a.portee*1858).strokeWidth(1);
+                googleMap.addCircle(circleOption);
+            }
+
+
+            //googleMap.addMarker(new MarkerOptions().position(a.position) .title(a.name) .snippet("Région : " + a.region) .alpha(0.7f) .icon(BitmapDescriptorFactory.fromResource(R.drawable.buildings2)));
+            //circleOption = new CircleOptions().center(a.position).fillColor(Color.parseColor("#440000DD")).radius(a.portee*1858).strokeWidth(0);
+            //googleMap.addCircle(circleOption);
         }
 
         if (ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(),

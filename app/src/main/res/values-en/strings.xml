@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IsenPhare</string>
+    <string name="action_settings">Setting</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Map</string>
+    <string name="menu_apropos">About</string>
+    <string name="menu_slideshow">List</string>
+    <string name="titleDetail">Lighthouse</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="information_sur_le_phare">Infos about :</string>
+</resources>

@@ -70,6 +70,18 @@ public class PhareContent {
                 String region = obj.getString("region");
                 String construction = obj.getString("construction");
                 String filename = obj.getString("filename");
+
+                String couleur;
+                String oneCouleur[];
+                try {
+                    couleur = obj.getString("couleur");
+                    oneCouleur = couleur.split("-");
+                    couleur = oneCouleur[0];
+                } catch (JSONException e){
+                    Log.d(TAG, "couleur issue");
+                    couleur = "rouge";
+                }
+
                 String auteur;
                 try {
                     auteur = obj.getString("auteur");
@@ -139,7 +151,7 @@ public class PhareContent {
 
                 }
 
-                addItem(new PhareItem(id, nom, region, construction, Integer.parseInt(construction), filename, auteur,
+                addItem(new PhareItem(id, nom, region, construction,couleur, Integer.parseInt(construction), filename, auteur,
                         hauteur, eclat, periode, porte, automatisation, lat, lon));
             }
 
@@ -175,6 +187,7 @@ public class PhareContent {
         public final String name;
         public final String region;
         public final String date;
+        public  final String couleur;
         public final int construction;
         public final String filename;
         public final String auteur;
@@ -188,13 +201,14 @@ public class PhareContent {
         public final LatLng position;
         //public final MarkerOptions Mop;
 
-        public PhareItem(String id, String content, String details, String date, int construction, String filename,
+        public PhareItem(String id, String content, String details, String date, String couleur, int construction, String filename,
                          String auteur, int hauteur, int eclat, int periode, int portee, int automatisation, double lat,
                          double lon) {
             this.id = id;
             this.name = content;
             this.region = details;
             this.date = date;
+            this.couleur = couleur;
             this.construction = construction;
             this.filename = filename;
             this.auteur = auteur;
